@@ -6,3 +6,12 @@ Colorize terminal output. Linux-Mac only, Windows coming soon.
 https://stackoverflow.com/questions/1489183/how-can-i-use-ruby-to-colorize-the-text-output-to-a-terminal/11482430#11482430
 
 TO-DO: documentation
+
+Usage:
+```ruby
+require 'kolorit'
+
+'my_string'.green
+'my_string'.cyan.bold
+'my_string'.black.underline
+```
