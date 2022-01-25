@@ -6,14 +6,10 @@ module Kolorit
 end
 
 if ENV['OS'] == 'Windows_NT'
+  # working on windows color codes
   # require_relative 'kolorit/windows'
-  class String
-    # working on windows color codes
-    # include Kolorit::Windows unless RUBY_PLATFORM =~ /cygwin/
-  end
+  # String.include Kolorit::Windows unless RUBY_PLATFORM =~ /cygwin/
 else
   require_relative 'kolorit/linux'
-  class String
-    include Kolorit::Linux
-  end
+  String.include(Kolorit::Linux)
 end
