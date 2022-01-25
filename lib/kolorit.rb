@@ -9,7 +9,7 @@ os = nil
 local_os = Gem::Platform.local.os
 
 if local_os =~ /windows || Windows || Windows_NT/ 
-  os = RUBY_PLATFORM =~ /cygwin/ ? :win : :x
+  os = RUBY_PLATFORM =~ /cygwin/ ? :x : :win
 else
   os = :x
 end
