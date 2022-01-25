@@ -26,8 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.files = %w[lib/kolorit.rb
                   lib/kolorit/version.rb
-                  lib/kolorit/linux.rb
-                  lib/kolorit/windows.rb]
+                  lib/kolorit/linux.rb]
 
   spec.bindir = 'bin'
   spec.require_paths = 'lib'
