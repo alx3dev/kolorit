@@ -5,21 +5,11 @@ require_relative 'kolorit/version'
 module Kolorit
 end
 
-os = nil
-local_os = Gem::Platform.local.os
-
-if local_os =~ /windows || Windows || Windows_NT/ 
-  os = RUBY_PLATFORM =~ /cygwin/ ? :x : :win
-else
-  os = :x
-end
-
-raise(StandardError, 'Kolorit not available for your OS', []) if os.nil?
-
-if os == :win
+if ENV['OS'] == 'Windows_NT'
   # require_relative 'kolorit/windows'
   class String
     # working on windows color codes
+    # include Kolorit::Windows unless RUBY_PLATFORM =~ /cygwin/
   end
 else
   require_relative 'kolorit/linux'
