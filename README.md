@@ -12,11 +12,30 @@ gem install kolorit
 
 Usage:
 ```ruby
+# This will check for your OS,
+# and include color methods in core String class
+
 require 'kolorit'
+
+# Now you can use:
 
 'my_string'.green
 'my_string'.cyan.bold
 'my_string'.black.underline
 ```
+If you don't want to override `String` class, you can **require and include** only Linux module:
 
+```ruby
+# This do not check for OS
+# Require only file with methods for your OS
 
+require 'kolorit/linux'
+
+# Include module so you can use color methods
+
+include Kolorit::Linux
+
+# Now you can use:
+
+'this is red string'.red
+```
