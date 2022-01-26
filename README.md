@@ -1,5 +1,7 @@
 # Kolorit
 
+![GIF Preview](demo.gif)
+
 Colorize terminal output. Linux-Mac only, Windows coming soon. I was working on [CTFC gem](https://www.github.com/alx3dev/ctfc), and noticed that `colorize gem`
 is registered under *GPLv2 license*. I started on new one, [and credits go here](https://stackoverflow.com/questions/1489183/how-can-i-use-ruby-to-colorize-the-text-output-to-a-terminal/11482430#11482430) for time-saving.
 
