@@ -1,0 +1,14 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: '3.0'
+
+##
+# Required to keep version >= 2.6 allowed
+##
+# Offense count: 1
+# Configuration parameters: Include.
+# Include: **/*.gemspec
+Gemspec/RequiredRubyVersion:
+  Exclude:
+    - 'kolorit.gemspec'
+

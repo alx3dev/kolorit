@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.metadata['source_code_uri'] = spec.homepage
   spec.metadata['changelog_uri'] = "#{spec.homepage}/CHANGELOG.md"
   spec.metadata['documentation_uri'] = "https://rubydoc.info/gems/#{spec.name}"
+  spec.metadata['license_uri'] = "#{spec.homepage}/LICENSE"
 
   spec.files = %w[lib/kolorit.rb
                   lib/kolorit/version.rb
