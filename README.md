@@ -2,12 +2,24 @@
 
 ![GIF Preview](demo.gif)
 
-Colorize terminal output. Linux-Mac only, Windows coming soon. I was working on [CTFC gem](https://www.github.com/alx3dev/ctfc), and noticed that `colorize gem`
-is registered under *GPLv2 license*. I started on new one, [and credits go here](https://stackoverflow.com/questions/1489183/how-can-i-use-ruby-to-colorize-the-text-output-to-a-terminal/11482430#11482430) for time-saving.
+Still in early development stage, meaning windows support should come in near future.
+For now, windows 10 users should be able to use it with `win32console` gem, but it's not tested yet.
 
-TO-DO: documentation
+Gem work with `Ruby 2.6 >`. It's almost compatible with `colorize` gem, but some colors are not implemented yet
+_(light blue, light green ...), and background colors.
 
-Install:
+You should call `String#red` not `String#colorize(:red)', it takes more resources.
+#### TO-DO: documentation
+[some badly written docs](https://rubydoc.info/gems/kolorit/0.1.5)
+
+GitHub repo is always updated before rubygems
+```bash
+git clone https://www.github.com/alx3dev/kolorit.git
+cd kolorit
+bundle install
+```
+
+Install from rubygems:
 ```bash
 gem install kolorit
 ```
