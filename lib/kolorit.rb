@@ -40,7 +40,7 @@ end
 
 klass = String
 
-if Kolorit.windows? && #!defined?(Kolorit::Windows)
+if Kolorit.windows? #&& !defined?(Kolorit::Windows)
   # still working on windows support
   #require_relative 'kolorit/windows'
   #klass.include Kolorit::Windows
