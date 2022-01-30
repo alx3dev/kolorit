@@ -54,10 +54,11 @@ if Kolorit.windows? && !defined?(Kolorit::Windows)
 elsif !defined?(Kolorit::Linux)
   begin
     require 'win32console' if Kolorit.env_os_win?
-  rescue StandardError
-    raise StandardError 'please run: $ gem install win32console.'
-  ensure
-    require_relative 'kolorit/linux'
-    klass.include(Kolorit::Linux)
+  rescue LoadError => e
+    raise e.message unless e.message =~ /win32console/
+    puts 'Please run: $ gem install win32console'
+    exit(1)
   end
+  require_relative 'kolorit/linux'
+  klass.include(Kolorit::Linux)
 end

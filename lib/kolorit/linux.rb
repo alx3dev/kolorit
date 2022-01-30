@@ -2,8 +2,8 @@
 
 module Kolorit
   ##
-  # kolor codes for linux systems.
-  # Allow use of kolor methods when included in class.
+  # Color codes for linux systems.
+  # Allow use of color methods when included in class.
   # @see Kolorit
   # @see https://www.github.com/alx3dev/kolorit/README.md
   #
@@ -59,7 +59,7 @@ module Kolorit
     end
     alias inverse reverse_color
 
-    # @depreceated Use direct color methods insted #red, #blue ...
+    # @depreceated Use direct color methods instead => String#red, String#blue ...
     # this is part of code that make rubocop sad
     def colorize(clr)
       case clr.to_sym
