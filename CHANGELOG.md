@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## 0.1.5
+- Change methods definition to make it compatible with ruby 2
+- Add `colorize` to make it compatible with colorize gem method names
+
 ## 0.1.4
 - Code refactor to make it faster and more readable
 - Write documentation in source code
