@@ -48,14 +48,16 @@ raise(StandardError, 'Windows not supported, yet!', []) if Kolorit.on_windows?
 klass = String
 
 if Kolorit.windows? && !defined?(Kolorit::Windows)
-
   require_relative 'kolorit/windows'
   klass.include Kolorit::Windows
 
 elsif !defined?(Kolorit::Linux)
-
-  require 'win32ole' if Kolorit.env_os_win?
-  require_relative 'kolorit/linux'
-  klass.include(Kolorit::Linux)
-
+  begin
+    require 'win32console' if Kolorit.env_os_win?
+  rescue StandardError
+    raise StandardError 'please run: $ gem install win32console.'
+  ensure
+    require_relative 'kolorit/linux'
+    klass.include(Kolorit::Linux)
+  end
 end
