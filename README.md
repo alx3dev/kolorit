@@ -6,9 +6,9 @@ Still in early development stage, meaning windows support should come in near fu
 For now, windows 10 users should be able to use it with `win32console` gem, but it's not tested yet.
 
 Gem work with `Ruby 2.6 >`. It's almost compatible with `colorize` gem, but some colors are not implemented yet
-_(light blue, light green ...), and background colors.
+_(light blue, light green ...)_, and background colors.
 
-You should call `String#red` not `String#colorize(:red)', it takes more resources.
+You should call `String#red` not `String#colorize(:red)`, it takes more resources.
 #### TO-DO: documentation
 [some badly written docs](https://rubydoc.info/gems/kolorit/0.1.5)
 
