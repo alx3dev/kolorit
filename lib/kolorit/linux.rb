@@ -3,8 +3,9 @@
 module Kolorit
   ##
   # Color codes for linux systems.
-  # Allow use of color methods when included in **String** class.
+  # Allow use of color methods when included in class.
   # @see Kolorit
+  # @see https://www.github.com/alx3dev/kolorit/README.md
   #
   module Linux
     def red     = colorize(31)
@@ -24,15 +25,15 @@ module Kolorit
     private
 
     def colorize(color_code)
-      type = case color_code
-             when 1 then 22 # bold
-             when 3 then 23 # italic
-             when 4 then 24 # underline
-             when 5 then 25 # blink
-             when 7 then 27 # reverse_color
-             else 0
-             end
-      "\e[#{color_code}m#{self}\e[#{type}m"
+      style = case color_code
+              when 1 then 22 # bold
+              when 3 then 23 # italic
+              when 4 then 24 # underline
+              when 5 then 25 # blink
+              when 7 then 27 # reverse_color
+              else 0
+              end
+      "\e[#{color_code}m#{self}\e[#{style}m"
     end
   end
 end
