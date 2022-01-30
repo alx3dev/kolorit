@@ -1,6 +1,8 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   NewCops: enable
-  TargetRubyVersion: '3.0'
+  TargetRubyVersion: '2.7'
 
 ##
 # Required to keep Ruby version >= 2.6 allowed

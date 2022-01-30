@@ -26,9 +26,14 @@ require_relative 'kolorit/version'
 #
 module Kolorit
   class << self
+    def env_os_win?
+      ENV['OS'] == 'Windows_NT'
+    end
+
     def on_windows?
-      if ENV['OS'] == 'Windows_NT'
+      if env_os_win?
         return false if RUBY_PLATFORM =~ /cygwin/
+
         true
       else
         false
@@ -38,14 +43,19 @@ module Kolorit
   end
 end
 
+raise(StandardError, 'Windows not supported, yet!', []) if Kolorit.on_windows?
+
 klass = String
 
-if Kolorit.windows? #&& !defined?(Kolorit::Windows)
-  # still working on windows support
-  #require_relative 'kolorit/windows'
-  #klass.include Kolorit::Windows
-  #raise StandardError, 'Windows not supported, yet!', []
+if Kolorit.windows? && !defined?(Kolorit::Windows)
+
+  require_relative 'kolorit/windows'
+  klass.include Kolorit::Windows
+
 elsif !defined?(Kolorit::Linux)
+
+  require 'win32ole' if Kolorit.env_os_win?
   require_relative 'kolorit/linux'
   klass.include(Kolorit::Linux)
+
 end

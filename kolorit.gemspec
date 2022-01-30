@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Colorize terminal output. Linux-Mac only, Windows CLI coming soon.'
   spec.description = <<~DESCRIPTION
     Print your terminal output in different colors. Now compatible with Ruby version 2,
-    not only 3. Early development stage, for now only Linux and Mac. MIT license.
+    not only 3. Early development - only Linux and Mac. MIT license.
   DESCRIPTION
   spec.homepage = 'https://www.github.com/alx3dev/kolorit'
   spec.license = 'MIT'
