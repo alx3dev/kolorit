@@ -8,19 +8,19 @@ module Kolorit
   # @see https://www.github.com/alx3dev/kolorit/README.md
   #
   module Linux
-    def red     = colorize(31)
-    def green   = colorize(32)
-    def yellow  = colorize(33)
-    def blue    = colorize(34)
-    def pink    = colorize(35)
-    def cyan    = colorize(36)
-    def gray    = colorize(37)
+    def red;    colorize(31) end
+    def green;  colorize(32) end
+    def yellow; colorize(33) end
+    def blue;   colorize(34) end
+    def pink;   colorize(35) end
+    def cyan;   colorize(36) end
+    def gray;   colorize(37) end
 
-    def bold          = colorize(1)
-    def italic        = colorize(3)
-    def underline     = colorize(4)
-    def blink         = colorize(5)
-    def reverse_color = colorize(7)
+    def bold;           colorize(1) end
+    def italic;         colorize(3) end
+    def underline;      colorize(4) end
+    def blink;          colorize(5) end
+    def reverse_color;  colorize(7) end
 
     private
 
