@@ -2,6 +2,14 @@
 
 module Kolorit
   ##
+  # Lookup for color-code by name
+  #
+  Kolors = { red: 31, green: 32, yellow: 33,
+             blue: 34, pink: 35, cyan: 36,
+             gray: 37, bold: 1, italic: 3,
+             underline: 4, blink: 5, inverse: 7 }.freeze
+
+  ##
   # Color codes for linux systems.
   # Allow use of color methods when included in class.
   # @see Kolorit
@@ -10,87 +18,47 @@ module Kolorit
   # @todo Use `def red = kolor(int)` in ruby > 3.0
   #
   module Linux
-    def red
-      kolor(31)
-    end
+    def red(str = nil);    kolor(31, str) end
+    def green(str = nil);  kolor(32, str) end
+    def yellow(str = nil); kolor(33, str) end
+    def blue(str = nil);   kolor(34, str) end
+    def pink(str = nil);   kolor(35, str) end
+    def cyan(str = nil);   kolor(36, str) end
+    def gray(str = nil);   kolor(37, str) end
 
-    def green
-      kolor(32)
-    end
+    def bold(str = nil);           kolor(1, str) end
+    def italic(str = nil);         kolor(3, str) end
+    def underline(str = nil);      kolor(4, str) end
+    def blink(str = nil);          kolor(5, str) end
+    def reverse_color(str = nil);  kolor(7, str) end
 
-    def yellow
-      kolor(33)
-    end
-
-    def blue
-      kolor(34)
-    end
-
-    def pink
-      kolor(35)
-    end
-
-    def cyan
-      kolor(36)
-    end
-
-    def gray
-      kolor(37)
-    end
-
-    def bold
-      kolor(1)
-    end
-
-    def italic
-      kolor(3)
-    end
-
-    def underline
-      kolor(4)
-    end
-
-    def blink
-      kolor(5)
-    end
-
-    def reverse_color
-      kolor(7)
-    end
     alias inverse reverse_color
 
-    # @depreceated Use direct color methods instead => String#red, String#blue ...
-    # this is part of code that make rubocop sad
-    def colorize(clr)
-      case clr.to_sym
-      when :red then red
-      when :green then green
-      when :yellow then yellow
-      when :blue then blue
-      when :pink then pink
-      when :cyan then cyan
-      when :gray then gray
-      when :bold then bold
-      when :italic then italic
-      when :underline then underline
-      when :blink then blink
-      when :reverse_color, :inverse then reverse_color
-      else self
-      end
+    def colorize(color, string = nil, &blk)
+      string = yield(blk) if block_given?
+      kolor Kolors[color.to_sym], string
+    end
+
+    def kolorize(string, color = nil, &blk)
+      color = block_given? ? yield(blk) : :cyan
+      kolor Kolors[color.to_sym], string
     end
 
     private
 
-    def kolor(color_code)
-      style = case color_code
-              when 1 then 22 # bold
-              when 3 then 23 # italic
-              when 4 then 24 # underline
-              when 5 then 25 # blink
-              when 7 then 27 # reverse_kolor
-              else 0
-              end
-      "\e[#{color_code}m#{self}\e[#{style}m"
+    def kolor(color, string = nil)
+      string = self if string.nil?
+      color = Kolors[color.to_sym] unless color.is_a?(Integer)
+      style =
+        case color
+        when 1 then 22 # bold
+        when 3 then 23 # italic
+        when 4 then 24 # underline
+        when 5 then 25 # blink
+        when 7 then 27 # reverse_kolor
+        else 0
+        end
+      "\e[#{color}m#{string}\e[#{style}m"
     end
   end
 end
