@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'kolorit/version'
+require_relative 'kolorit/version' unless defined? Kolorit::VERSION
 
 ##
-# Colorize your terminal output, without touching String class.
+# Colorize terminal output without touching String class.
 # Work for Linux and Mac, require `win32console` for Windows.
 #
 # @example Use it any way you like

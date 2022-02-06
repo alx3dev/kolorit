@@ -1,21 +1,59 @@
 # frozen_string_literal: true
 
+require_relative 'version' unless defined? Kolorit::VERSION
+
 module Kolorit
   ##
-  # Lookup for color-code by name
+  # Color codes for Linux systems.
+  # Allow use of color methods in many different ways.
   #
-  Kolors = { red: 31, green: 32, yellow: 33,
-             blue: 34, pink: 35, cyan: 36,
-             gray: 37, bold: 1, italic: 3,
-             underline: 4, blink: 5, inverse: 7 }.freeze
-
-  ##
-  # Color codes for linux systems.
-  # Allow use of color methods when included in class.
+  # Include methods outside of main module to use them directly
+  # on string (or integer, array, hash). This is done when you call
+  # `require 'kolorit'`. You can also just include it in class
+  # where you want to use it:
+  #
+  # @example Include Kolorit::Linux in just one class
+  #
+  #   class MyClass
+  #     require 'kolorit/linux'
+  #     include Kolorit::Linux
+  #     # rest_of_code
+  #   end
+  #
+  # @example Use color named methods
+  #
+  #   red 'Hello Red Ruby!'
+  #   # or
+  #   green 'Hello Green Ruby!'
+  #
+  # @example Use colorize/kolorize methods
+  #
+  #   colorize :red, 'Hello Red Ruby!'
+  #   # or
+  #   kolorize 'Ruby goes green, again!', :green
+  #
+  # @example Colorize also accept block
+  #
+  #   # colorize accept color as first argument
+  #
+  #   colorize(:green) do
+  #     case @var = SomeClass.call_some_method
+  #     when 'some response'
+  #       "SomeClass returned response #{@var}"
+  #     when 'another response'
+  #       "SomeClass returned response #{@var}"
+  #     else
+  #       # in this situation #red has precedence over #green
+  #       red("Error returned for #{@var}")
+  #     end
+  #   end
+  #
+  #   # kolorize accept string as first argument
+  #
+  #   kolorize(@result) { @result.is_a?(String) ? :green : :red }
+  #
   # @see Kolorit
   # @see https://www.github.com/alx3dev/kolorit/README.md
-  #
-  # @todo Use `def red = kolor(int)` in ruby > 3.0
   #
   module Linux
     def red(str = nil);    kolor(31, str) end
@@ -61,4 +99,11 @@ module Kolorit
       "\e[#{color}m#{string}\e[#{style}m"
     end
   end
+  ##
+  # Lookup for color-code by name.
+  #
+  Kolors = { red: 31, green: 32, yellow: 33,
+             blue: 34, pink: 35, cyan: 36,
+             gray: 37, bold: 1, italic: 3,
+             underline: 4, blink: 5, inverse: 7 }.freeze
 end
