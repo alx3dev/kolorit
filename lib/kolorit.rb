@@ -3,13 +3,21 @@
 require_relative 'kolorit/version'
 
 ##
-# Colorize your terminal output. Work for Linux and Mac, if OS is windows - require `win32console`
-# if platform is Cygwin or raise exception.
+# Colorize your terminal output, without touching String class.
+# Work for Linux and Mac, require `win32console` for Windows.
 #
-# @example Override **String** class with color methods
+# @example Use it any way you like
 #  require 'kolorit'
 #
-#   'this is green string'.green
+#  puts colorize :red, 'this is red string'
+#
+#  puts blue 'this is blue string'
+#
+#  puts 'this is green string'.green
+#
+#  puts cyan 'this is cyan string, make it bold!'.bold
+#
+# @see Kolorit::Linux
 #
 module Kolorit
 end

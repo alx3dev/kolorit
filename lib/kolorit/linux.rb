@@ -36,12 +36,12 @@ module Kolorit
 
     def colorize(color, string = nil, &blk)
       string = yield(blk) if block_given?
-      kolor Kolors[color.to_sym], string
+      kolor color, string
     end
 
     def kolorize(string, color = nil, &blk)
       color = block_given? ? yield(blk) : :cyan
-      kolor Kolors[color.to_sym], string
+      kolor color, string
     end
 
     private
