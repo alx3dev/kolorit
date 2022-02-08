@@ -1,4 +1,11 @@
-## [Unreleased]
+## 0.2.0-dev
+_Create Development Branch_
+ - String class is not overridden anymore
+ - Windows support with `win32console`
+ - OS check is done in `version.rb`, to allow use in `.gemspec` file
+ - Add methods `#colorize` and `#kolorize` that accept block
+ - each color optionally accept string as argument `#green('optional string')`
+
 
 ## 0.1.5
 - Change methods definition to make it compatible with ruby 2

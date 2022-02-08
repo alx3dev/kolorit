@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
+require_relative 'version' unless defined? Kolorit::VERSION
+
 module Kolorit
-  ##
-  # Still working on...
-  #   Color codes for windows systems.
-  #   Allow use of color methods when included in class.
-  #   @see Kolorit
-  #   @see https://www.github.com/alx3dev/kolorit/README.md
-  #
   module Windows
+    begin
+      raise RuntimeError, 'Windows require Cygwin' unless Kolorit.win_32_console?
+      require 'win32console'
+    rescue LoadError => e
+      raise 'Run: $ gem install win32console' if e.message =~ /win32console/
+      raise e.message
+    end
+    # Windows without cygwin is not supported, so if we come this far,
+    # include Linux color codes.
+    require_relative 'linux' unless defined? Kolorit::Linux
+    include Kolorit::Linux
   end
 end

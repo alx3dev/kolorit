@@ -1,64 +1,32 @@
 # frozen_string_literal: true
 
-require_relative 'kolorit/version'
+require_relative 'kolorit/version' unless defined? Kolorit::VERSION
 
 ##
-# Handle modules with color codes and methods to colorize string.
-# Right module is included depending on user OS.
+# Colorize terminal output without touching String class.
+# Work for Linux and Mac, require `win32console` for Windows.
 #
-# @example (opt 1) - Require everything and override String class
-#  require 'kolorit' => include color methods in class String
+# @example Use it any way you like
+#  require 'kolorit'
 #
-# @example (opt 2) - Require what you need, include where you need it
-#  require 'kolorit/linux' => just require, no override
-#  include Kolorit::Linux => use color methods in your class
+#  puts colorize :red, 'this is red string'
 #
-# @example Colorize string
-#  'I am mr Red String'.red
-#  'I am mr Green String'.green
-#  'I am bold (fat) mis Pink String'.pink.bold
+#  puts blue 'this is blue string'
 #
-# @example Available colors
-#  red, green, yellow, blue, pink, cyan, gray
+#  puts 'this is green string'.green
 #
-# @example Available styles
-#  bold, italic, underline, blink, reverse_color
+#  puts cyan 'this is cyan string, make it bold!'.bold
+#
+# @see Kolorit::Linux
 #
 module Kolorit
-  class << self
-    def env_os_win?
-      ENV['OS'] == 'Windows_NT'
-    end
-
-    def on_windows?
-      if env_os_win?
-        return false if RUBY_PLATFORM =~ /cygwin/
-
-        true
-      else
-        false
-      end
-    end
-    alias windows? on_windows?
-  end
 end
 
-raise(StandardError, 'Windows not supported, yet!', []) if Kolorit.on_windows?
 
-klass = String
-
-if Kolorit.windows? && !defined?(Kolorit::Windows)
+if Kolorit.win? && !defined?(Kolorit::Windows)
   require_relative 'kolorit/windows'
-  klass.include Kolorit::Windows
-
+  include(Kolorit::Windows)
 elsif !defined?(Kolorit::Linux)
-  begin
-    require 'win32console' if Kolorit.env_os_win?
-  rescue LoadError => e
-    raise e.message unless e.message =~ /win32console/
-    puts 'Please run: $ gem install win32console'
-    exit(1)
-  end
   require_relative 'kolorit/linux'
-  klass.include(Kolorit::Linux)
+  include(Kolorit::Linux)
 end

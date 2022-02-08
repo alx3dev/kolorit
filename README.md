@@ -12,7 +12,7 @@ You should call `String#red` not `String#colorize(:red)`, it takes more resource
 #### TO-DO: documentation
 [some badly written docs](https://rubydoc.info/gems/kolorit/0.1.5)
 
-GitHub repo is always updated before rubygems
+GitHub repo is always updated before rubygems.
 ```bash
 git clone https://www.github.com/alx3dev/kolorit.git
 cd kolorit
@@ -25,31 +25,58 @@ gem install kolorit
 ```
 
 Usage:
-```ruby
-# This will check for your OS,
-# and include color methods in core String class
 
+ - Include kolorit methods, allow use on string, integer, array, hash
+
+```ruby
 require 'kolorit'
 
-# Now you can use:
+'this is red string'.red
 
-'my_string'.green
-'my_string'.cyan.bold
-'my_string'.black.underline
+'this is bold cyan string'.bold.cyan
+
+colorize :blue, 'params'
 ```
-If you don't want to override `String` class, you can **require and include** only Linux module:
+
+ - Inlcude kolorit module to be used where you need it
 
 ```ruby
-# This do not check for OS
-# Require only file with methods for your OS
+require 'kolorit/linux' # or 'kolorit/windows'
 
-require 'kolorit/linux'
+include Kolorit::Linux # or ::Windows
 
-# Include module so you can use color methods
+blue 'some string'
+red 'red bold string'
+```
 
-include Kolorit::Linux
+`#colorize` accept color as argument, and string as second  
+`#kolorize` accept string as argument and color as second
 
-# Now you can use:
+Both of this methods also accept block - Colorize block should return `:color`,
+while `#kolorize` block should return string to be colored.
 
-'this is red string'.red
+```ruby
+colorize(:red) do
+  if some_variable > 10
+    puts 'more then 10'
+  else
+    puts 'less then 10'.bold
+  end
+end
+
+@var = true
+colorize(:bold) { @var.is_a?(TrueClass) ? :green : :red }
+```
+
+```ruby
+kolorize('some_variable') do
+  if some_variable > 10
+    :green
+  else
+    :red
+  end
+end
+
+@var = 'SUCCESS!'
+kolorize(@var) { @var.nil? ? :red : :green }
 ```
