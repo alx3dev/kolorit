@@ -80,3 +80,23 @@ end
 @var = 'SUCCESS!'
 kolorize(@var) { @var.nil? ? :red : :green }
 ```
+
+You can allow methods to automatically `#puts` or `#print` colorized string:
+
+```ruby
+# this call without arguments is same as with :puts
+Kolorit.output :puts
+# or
+Kolorit.output :print
+
+# everything else is same as false
+Kolorit.output false
+```
+
+Enable or disable colorization globally:
+
+```ruby
+Kolorit.disable
+# or
+Kolorit.enable
+```
