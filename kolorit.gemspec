@@ -8,11 +8,10 @@ Gem::Specification.new do |spec|
   spec.authors = ['alx3dev']
   spec.email = ['alx3dev@gmail.com']
 
-  spec.summary = 'Colorize terminal output. Linux-Mac only, Windows CLI coming soon.'
+  spec.summary = 'Colorize terminal output on Linux, Mac and Windows.'
   spec.description = <<~DESCRIPTION
-    Print your terminal output in different colors. Now compatible with Ruby version 2,
-    not only 3. Linux and Mac, Windows should work with `win32console` but not tested.
-    Early development stage, MIT license.
+    Colorize terminal output without touching String class.
+    Work for Linux and Mac, require `win32console` for Windows.
   DESCRIPTION
   spec.homepage = 'https://www.github.com/alx3dev/kolorit'
   spec.license = 'MIT'

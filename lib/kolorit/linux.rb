@@ -39,12 +39,10 @@ module Kolorit
   #   colorize(:green) do
   #     case @var = SomeClass.call_some_method
   #     when 'some response'
-  #       "SomeClass returned response #{@var}"
-  #     when 'another response'
-  #       "SomeClass returned response #{@var}"
+  #       "do_something_with_response #{@var}"
   #     else
   #       # in this situation #red has precedence over #green
-  #       red("Error returned for #{@var}")
+  #       red("Returned Error for #{@var}")
   #     end
   #   end
   #
@@ -84,19 +82,27 @@ module Kolorit
 
     private
 
-    def kolor(color, string = nil)
-      string = self if string.nil?
+    def kolor(color, param = nil)
+      param = self if param.nil?
+      return param unless Kolorit.enabled?
+
       color = Kolors[color.to_sym] unless color.is_a?(Integer)
       style =
         case color
-        when 1 then 22 # bold
-        when 3 then 23 # italic
-        when 4 then 24 # underline
-        when 5 then 25 # blink
-        when 7 then 27 # reverse_kolor
-        else 0
+          when 1 then 22 # bold
+          when 3 then 23 # italic
+          when 4 then 24 # underline
+          when 5 then 25 # blink
+          when 7 then 27 # reverse_kolor
+          else 0
         end
-      "\e[#{color}m#{string}\e[#{style}m"
+
+      string = "\e[#{color}m#{param}\e[#{style}m"
+      case Kolorit.output?
+        when :puts  then puts string
+        when :print then print string
+      end unless (1..7).include? color
+      string
     end
   end
   ##

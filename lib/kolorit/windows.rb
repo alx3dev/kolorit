@@ -11,6 +11,8 @@ module Kolorit
       raise 'Run: $ gem install win32console' if e.message =~ /win32console/
       raise e.message
     end
+    # Windows without cygwin is not supported, so if we come this far,
+    # include Linux color codes.
     require_relative 'linux' unless defined? Kolorit::Linux
     include Kolorit::Linux
   end
