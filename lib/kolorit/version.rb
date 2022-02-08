@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
+#
+# Check if we need **win32console** gem.
+# Defined here because we need it in _.gemspec_ file.
+#
+# Check either to puts/print or just return colorized string
+# Disable/Enable globally
+#
 module Kolorit
   # gem version
   VERSION = '0.2.0'
 
-  ##
-  # Check if we need **win32console** gem.
-  # Defined here because we need it in _.gemspec_ file.
-  #
-  # Check either to puts/print or just return colorized string
-  #
   class << self
     def win_32_console?
       win? && cygwin?
@@ -27,13 +28,13 @@ module Kolorit
       @enable != false
     end
 
-    def enable(param = true)
-      @enable = param.is_a? TrueClass
+    def enable(color: true)
+      @enable = color.is_a? TrueClass
     end
     alias enable= enable
 
     def disable
-      enable false
+      enable color: false
     end
 
     def output?

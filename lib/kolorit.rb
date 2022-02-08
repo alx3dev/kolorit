@@ -22,7 +22,6 @@ require_relative 'kolorit/version' unless defined? Kolorit::VERSION
 module Kolorit
 end
 
-
 if Kolorit.win? && !defined?(Kolorit::Windows)
   require_relative 'kolorit/windows'
   include(Kolorit::Windows)
