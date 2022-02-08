@@ -2,7 +2,7 @@
 
 module Kolorit
   # gem version
-  VERSION = '0.2.0-dev'
+  VERSION = '0.2.0'
 
   ##
   # Check if we need **win32console** gem.
