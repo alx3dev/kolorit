@@ -10,24 +10,25 @@ Gem::Specification.new do |spec|
 
   spec.summary = 'Colorize terminal output on Linux, Mac and Windows.'
   spec.description = <<~DESCRIPTION
-    Colorize terminal output without touching String class.
+    Colorize terminal output without touching core classes.
     Work for Linux and Mac, require `win32console` for Windows.
+    Use on any class, auto #puts or #print, with power of ruby blocks.
   DESCRIPTION
   spec.homepage = 'https://www.github.com/alx3dev/kolorit'
   spec.license = 'MIT'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  if %w(0.1 0.2).map { |v| Kolorit::VERSION.start_with? v }
-    spec.required_ruby_version = '>= 2.6.0'
-  else
-    spec.required_ruby_version = '~> 3'
-  end
+  rv = %w[0.1 0.2].map { |v| Kolorit::VERSION.start_with? v }
+  spec.required_ruby_version = if rv.include? true
+                                 '>= 2.6.0'
+                               else
+                                 '~> 3'
+                               end
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = spec.homepage
   spec.metadata['changelog_uri'] = "#{spec.homepage}/CHANGELOG.md"
   spec.metadata['documentation_uri'] = "https://rubydoc.info/gems/#{spec.name}/#{spec.version}"
-  spec.metadata['license_uri'] = "#{spec.homepage}/LICENSE"
 
   spec.files = %w[lib/kolorit.rb
                   lib/kolorit/linux.rb
@@ -41,6 +42,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'win32console', '~> 1.3' if Kolorit.win_32_console?
 
-  spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'bundler', '~> 2.3'
+  spec.add_development_dependency 'rake', '~> 13.0'
 end

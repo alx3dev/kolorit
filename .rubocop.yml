@@ -2,15 +2,3 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: '2.7'
-
-##
-# Required to keep Ruby version >= 2.6 allowed
-##
-# Offense count: 1
-# Configuration parameters: Include.
-# Include: **/*.gemspec
-Gemspec/RequiredRubyVersion:
-  Exclude:
-    - 'kolorit.gemspec'
-
