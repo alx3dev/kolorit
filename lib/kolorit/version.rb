@@ -4,8 +4,8 @@
 # Check if we need **win32console** gem.
 # Defined here because we need it in _.gemspec_ file.
 #
-# Check either to puts/print or just return colorized string
-# Disable/Enable globally
+# Check either to puts/print or just return colorized string.
+# Disable/Enable globally.
 #
 module Kolorit
   # gem version

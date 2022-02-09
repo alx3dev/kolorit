@@ -13,3 +13,6 @@
 Style/MixinUsage:
   Exclude:
     - 'lib/kolorit.rb'
+
+AllCops:
+  NewCops: enable
