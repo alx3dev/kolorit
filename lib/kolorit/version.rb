@@ -42,9 +42,11 @@ module Kolorit
     end
 
     def output(settings = :puts)
-      @output = settings
-      @output = nil if settings.is_a? FalseClass
-      @output = :puts if settings.is_a? TrueClass
+      @output = if [nil, true, :puts].include? settings
+                  :puts
+                else
+                  settings
+                end
     end
     alias output= output
   end
