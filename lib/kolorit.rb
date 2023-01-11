@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'kolorit/version' unless defined? Kolorit::VERSION
+require_relative('kolorit/version') unless defined?(Kolorit::VERSION)
 
 ##
 # Colorize terminal output without touching String class.
