@@ -18,12 +18,7 @@ Gem::Specification.new do |spec|
   spec.license = 'MIT'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  rv = %w[0.1 0.2].map { |v| Kolorit::VERSION.start_with? v }
-  spec.required_ruby_version = if rv.include? true
-                                 '>= 2.6.0'
-                               else
-                                 '~> 3'
-                               end
+  spec.required_ruby_version =  '~> 3'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = spec.homepage

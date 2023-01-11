@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'version' unless defined? Kolorit::VERSION
+require_relative('version') unless defined?(Kolorit::VERSION)
 
 module Kolorit
   ##
@@ -101,18 +101,21 @@ module Kolorit
     def reverse_color(str = nil)
       kolor(7, str)
     end
-
     alias inverse reverse_color
 
+    # When we are sure about color, but string could be dynamic
+    # Accept block to evaluate color symbol
     def colorize(color, string = nil, &blk)
       string = yield(blk) if block_given?
-      color = KOLORS[color.to_sym] unless color.is_a?(Integer)
+      color = KOLORS[color] unless color.is_a?(Integer)
       kolor color, string
     end
 
+    # When we are sure about string, but color could be dynamic.
+    # Accept block to evaluate string to be colorized.
     def kolorize(string, color = nil, &blk)
       color = yield(blk) if block_given?
-      color = KOLORS[color.to_sym] unless color.is_a?(Integer)
+      color = KOLORS[color] unless color.is_a?(Integer)
       kolor color, string
     end
 

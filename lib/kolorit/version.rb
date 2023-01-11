@@ -9,45 +9,28 @@
 #
 module Kolorit
   # gem version
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
 
   class << self
-    def win_32_console?
-      win? && cygwin?
+    def win?
+      (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
     end
 
-    def win?
-      ENV['OS'] == 'Windows_NT'
+    def mac?
+      (/darwin/ =~ RUBY_PLATFORM) != nil
+    end
+
+    def linux?
+      !win? && !mac?
+    end
+
+    def win_32_console?
+      win? && cygwin?
     end
 
     def cygwin?
       RUBY_PLATFORM =~ /cygwin/
     end
 
-    def enabled?
-      @enable != false
-    end
-
-    def enable(color: true)
-      @enable = color.is_a? TrueClass
-    end
-    alias enable= enable
-
-    def disable
-      enable color: false
-    end
-
-    def output?
-      @output
-    end
-
-    def output(settings = :puts)
-      @output = if [nil, true, :puts].include? settings
-                  :puts
-                else
-                  settings
-                end
-    end
-    alias output= output
   end
 end

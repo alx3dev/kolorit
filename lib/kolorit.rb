@@ -20,7 +20,37 @@ require_relative 'kolorit/version' unless defined? Kolorit::VERSION
 # @see Kolorit::Linux
 #
 module Kolorit
+  class << self
+    def enabled?
+      @enable != false
+    end
+
+    def enable(color: true)
+      @enable = color.is_a? TrueClass
+    end
+    alias enable= enable
+
+    def disable
+      enable color: false
+    end
+
+    def output?
+      return false unless %i[puts print].include? @output
+      @output
+    end
+
+    def output(settings = :puts)
+      @output = if [nil, true, :puts].include? settings
+                  :puts
+                else
+                  settings
+                end
+    end
+    alias output= output
+  end
 end
+
+raise('Unknown OS') unless (Kolorit.win? || Kolorit.mac? || Kolorit.linux?)
 
 if Kolorit.win? && !defined?(Kolorit::Windows)
   require_relative 'kolorit/windows'
