@@ -54,56 +54,25 @@ module Kolorit
   # @see https://www.github.com/alx3dev/kolorit/README.md
   #
   module Linux
-    def red(str = nil)
-      kolor(31, str)
-    end
+    
+    def red(str = nil) = kolor(31, str)
+    def green(str = nil) = kolor(32, str)
+    def yellow(str = nil) = kolor(33, str)
+    def blue(str = nil) = kolor(34, str)
+    def pink(str = nil) = kolor(35, str)
+    def cyan(str = nil) = kolor(36, str)
+    def gray(str = nil) = kolor(37, str)
 
-    def green(str = nil)
-      kolor(32, str)
-    end
+    def bold(str = nil) = kolor(1, str)
+    def italic(str = nil) = kolor(3, str)
 
-    def yellow(str = nil)
-      kolor(33, str)
-    end
+    def blink(str = nil) = kolor(5, str)
+    def inverse(str = nil) = kolor(7, str)
+    def underline(str = nil) = kolor(4, str)
 
-    def blue(str = nil)
-      kolor(34, str)
-    end
+    alias reverse_color inverse
 
-    def pink(str = nil)
-      kolor(35, str)
-    end
-
-    def cyan(str = nil)
-      kolor(36, str)
-    end
-
-    def gray(str = nil)
-      kolor(37, str)
-    end
-
-    def bold(str = nil)
-      kolor(1, str)
-    end
-
-    def italic(str = nil)
-      kolor(3, str)
-    end
-
-    def underline(str = nil)
-      kolor(4, str)
-    end
-
-    def blink(str = nil)
-      kolor(5, str)
-    end
-
-    def reverse_color(str = nil)
-      kolor(7, str)
-    end
-    alias inverse reverse_color
-
-    # When we are sure about color, but string could be dynamic
+    # When we are sure about color, but string should be dynamic
     # Accept block to evaluate color symbol
     def colorize(color, string = nil, &blk)
       string = yield(blk) if block_given?
@@ -111,7 +80,7 @@ module Kolorit
       kolor color, string
     end
 
-    # When we are sure about string, but color could be dynamic.
+    # When we are sure about string, but color should be dynamic.
     # Accept block to evaluate string to be colorized.
     def kolorize(string, color = nil, &blk)
       color = yield(blk) if block_given?
@@ -122,7 +91,7 @@ module Kolorit
     private
 
     def kolor(color, param = nil)
-      param = self if param.nil?
+      param ||= self
       string = color_style color, param
       unless (1..7).include? color
         case Kolorit.output?
@@ -147,7 +116,7 @@ module Kolorit
       "\e[#{color}m#{param}\e[#{style}m"
     end
   end
-  ##
+
   # Lookup for color-code by name.
   #
   KOLORS = { red: 31, green: 32, yellow: 33,
