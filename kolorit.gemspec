@@ -9,11 +9,13 @@ Gem::Specification.new do |spec|
   spec.email = ['alx3dev@gmail.com']
 
   spec.summary = 'Colorize terminal output on Linux, Mac and Windows.'
+
   spec.description = <<~DESCRIPTION
     Colorize terminal output without touching core classes.
     Work for Linux and Mac, require `win32console` for Windows.
     Use on any class, auto #puts or #print, with power of ruby blocks.
   DESCRIPTION
+
   spec.homepage = 'https://www.github.com/alx3dev/kolorit'
   spec.license = 'MIT'
   spec.metadata['rubygems_mfa_required'] = 'true'
@@ -35,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.bindir = 'bin'
   spec.require_paths = 'lib'
 
-  spec.add_runtime_dependency 'win32console', '~> 1.3' if Kolorit.win_32_console?
+  spec.add_runtime_dependency('win32console', '~> 1.3') if Kolorit.win_32_console?
 
   spec.add_development_dependency 'bundler', '~> 2.3'
   spec.add_development_dependency 'rake', '~> 13.0'

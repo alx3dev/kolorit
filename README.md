@@ -24,7 +24,7 @@ gem install kolorit
 
 # How to use:
 
- - Include kolorit methods, allow use on string, integer, array, hash
+ - require `kolorit` gem in your file
 
 ```ruby
 # you can call method on string only if you include module outside of main namespace.

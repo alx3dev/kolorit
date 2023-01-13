@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-#
+# OS recognition.
 # Check if we need **win32console** gem.
-# Defined here because we need it in _.gemspec_ file.
 #
-# Check either to puts/print or just return colorized string.
-# Disable/Enable globally.
+# Defined here because we need it in _.gemspec_ file.
 #
 module Kolorit
   # gem version
@@ -29,8 +27,7 @@ module Kolorit
     end
 
     def cygwin?
-      RUBY_PLATFORM =~ /cygwin/
+      (/cygwin/ =~ RUBY_PLATFORM) != nil
     end
-
   end
 end
