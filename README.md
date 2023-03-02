@@ -1,4 +1,6 @@
-# Kolorit
+#DEPRECEATED
+
+** Kolorit**
 
 ![GIF Preview](demo.gif)
 
